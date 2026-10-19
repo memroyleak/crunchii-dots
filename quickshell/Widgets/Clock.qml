@@ -1,1 +1,8 @@
-/home/memoryleak/.config/quickshell/Widgets/Clock.qml
+import ".."
+import "../Helpers"
+import "../Monitors"
+import QtQuick
+
+Widget {
+    contents: Time.time
+}

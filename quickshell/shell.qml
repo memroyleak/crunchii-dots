@@ -1,1 +1,5 @@
-/home/memoryleak/.config/quickshell/shell.qml
+import Quickshell
+
+Scope {
+    Bar {}
+}

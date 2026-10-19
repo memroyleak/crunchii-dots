@@ -1,1 +1,10 @@
-/home/memoryleak/.config/quickshell/Widgets/Battery.qml
+import "../Helpers"
+import "../Monitors"
+import ".."
+import QtQuick
+import Quickshell
+
+Widget {
+    contents: Math.round(BatteryMonitor.percentage) + "%"
+    icon: "\uf240"
+}

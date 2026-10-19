@@ -1,1 +1,7 @@
-/home/memoryleak/.config/quickshell/Widgets/Power.qml
+import ".."
+import QtQuick
+import Quickshell
+
+Widget {
+    icon: "\uf30a"
+}
