@@ -1,0 +1,1 @@
+/home/memoryleak/.config/quickshell/Monitors/MediaMonitor.qml

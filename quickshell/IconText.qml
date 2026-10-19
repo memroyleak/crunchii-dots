@@ -1,0 +1,1 @@
+/home/memoryleak/.config/quickshell/IconText.qml
