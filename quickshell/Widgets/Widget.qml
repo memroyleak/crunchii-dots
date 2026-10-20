@@ -1,6 +1,7 @@
 import ".."
 import "../Helpers"
 import QtQuick
+import QtQuick.Layouts
 import Quickshell
 
 Rectangle {
@@ -10,13 +11,12 @@ Rectangle {
 
     implicitWidth: row.implicitWidth + 30
     implicitHeight: 30
-    anchors.verticalCenter: parent.verticalCenter
     radius: height / 2
     color: Colors.widgetBgColor
 
     property string icon: ""
 
-    Row {
+    RowLayout {
         id: row
         anchors.centerIn: parent
         spacing: 10

@@ -17,8 +17,6 @@ Widget {
             required property int index
             readonly property int wsId: index + 1
 
-            anchors.verticalCenter: parent.verticalCenter
-
             implicitWidth: 22
             implicitHeight: 20
             radius: height / 2

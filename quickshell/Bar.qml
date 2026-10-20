@@ -35,6 +35,7 @@ Scope {
 
                 Power {}
                 Workspaces {}
+                ActiveWindow {}
             }
 
             Clock {
