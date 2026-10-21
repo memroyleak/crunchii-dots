@@ -1,5 +1,6 @@
 import "../Helpers"
 import QtQuick
+import QtQuick.Shapes
 import Quickshell
 import Quickshell.Hyprland
 
@@ -10,20 +11,29 @@ PopupWindow {
     property bool open: false
     property real contentWidth: 200
     property real contentHeight: 200
-    readonly property int pad: 8
 
     default property alias content: frame.data
 
-    anchor.window: target.QsWindow.window
-    anchor.item: target
+    readonly property var bar: target.QsWindow.window
+    readonly property int r: 16
+
+    anchor.window: bar
     anchor.edges: Edges.Bottom | Edges.Left
     anchor.gravity: Edges.Bottom | Edges.Right
 
-    implicitWidth: contentWidth + pad * 2
-    implicitHeight: contentHeight + pad * 2
+    anchor.onAnchoring: {
+        const p = bar.contentItem.mapFromItem(target, 0, 0);
+        anchor.rect.x = p.x - r;
+        anchor.rect.y = bar.height;
+        anchor.rect.width = target.width
+        anchor.rect.height = 0;
+    }
+
+    implicitWidth: contentWidth + r * 2
+    implicitHeight: contentHeight
     color: "transparent"
 
-    visible: open || frame.opacity > 0
+    visible: open || slider.y > -slider.height
 
     HyprlandFocusGrab {
         windows: [root]
@@ -31,22 +41,70 @@ PopupWindow {
         onCleared: root.open = false
     }
 
-    Rectangle {
-        id: frame
-        x: root.pad
-        y: root.pad
-        width: root.contentWidth
+    Item {
+        id: slider
+        width: root.width
         height: root.contentHeight
-        radius: 16
-        color: Colors.bgColor
-        border.width: 1
-        border.color: Colors.widgetBgColor
+        y: root.open ? 0 : -height
 
-        transformOrigin: Item.TopLeft
-        opacity: root.open ? 1 : 0
-        scale: root.open ? 1 : 0.92
+        Behavior on y {
+           NumberAnimation { duration: 300; easing.type: Easing.OutExpo }
+        }
 
-        Behavior on opacity { NumberAnimation { duration: 180; easing.type: Easing.OutCubic } }
-        Behavior on scale { NumberAnimation { duration: 180; easing.type: Easing.OutCubic } }
+        Rectangle {
+            id: frame
+            width: root.contentWidth
+            height: root.contentHeight
+            color: Colors.bgColor
+
+            topLeftRadius: 0
+            topRightRadius: 0
+            bottomLeftRadius: 16
+            bottomRightRadius: 16
+        }
+
+        Shape {
+            x: -root.r
+            y: 0
+            width: root.r
+            height: root.r
+            preferredRendererType: Shape.CurveRenderer
+
+            ShapePath {
+                fillColor: Colors.bgColor
+                strokeColor: "transparent"
+
+                startX: 0; startY: 0;
+                PathLine { x: root.r; y: 0 }
+                PathLine { x: root.r; y: root.r }
+                PathArc {
+                    x: 0; y: 0
+                    radiusX: root.r; radiusY: root.r
+                    direction: PathArc.CounterClockwise
+                }
+            }
+        }
+
+        Shape {
+            x: root.contentWidth
+            y: 0
+            width: root.r
+            height: root.r
+            preferredRendererType: Shape.CurveRenderer
+
+            ShapePath {
+                fillColor: Colors.bgColor
+                strokeColor: "transparent"
+
+                startX: 0; startY: 0
+                PathLine { x: root.r; y: 0 }
+                PathArc {
+                    x: 0; y: root.r
+                    radiusX: root.r; radiusY: root.r
+                    direction: PathArc.Counterclockwise
+                }
+                PathLine { x: 0; y: 0 }
+            }
+        }
     }
 }

@@ -6,15 +6,15 @@ import Quickshell
 Panel {
     id: root
 
-    contentWidth: col.implicitWidth + 24
-    contentHeight: col.implicitHeight + 24
+    contentWidth: col.implicitWidth + 10
+    contentHeight: col.implicitHeight + 10
 
     readonly property var actions: [
         { icon: "\uf023", contents: "Lock", cmd: ["loginctl", "lock-session"] },
         { icon: "\uf08b", contents: "Log Out", cmd: ["hyprctl", "dispatch", "exit"] },
         { icon: "\uf186", contents: "Suspend", cmd: ["systemctl", "suspend"] },
         { icon: "\uf021", contents: "Reboot", cmd: ["systemctl", "reboot"] },
-        { icon: "\uf011", contents: "Shut Down", cmd: ["systenctl", "poweroff"] }
+        { icon: "\uf011", contents: "Shut Down", cmd: ["systemctl", "poweroff"] }
     ]
 
     Column {
@@ -59,7 +59,7 @@ Panel {
 
                     CText {
                         anchors.verticalCenter: parent.verticalCenter
-                        text: item.modelData.content
+                        text: item.modelData.contents
                     }
                 }
             }
