@@ -16,6 +16,14 @@ Rectangle {
 
     property string icon: ""
 
+    signal clicked()
+
+    MouseArea {
+        anchors.fill: parent
+        cursorShape: Qt.PointingHandCursor
+        onClicked: root.clicked()
+    }
+
     RowLayout {
         id: row
         anchors.centerIn: parent
