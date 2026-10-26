@@ -39,7 +39,6 @@ hl.monitor({
 -- Or execute your favorite apps at launch like this:
 --
 hl.on("hyprland.start", function()
-	hl.exec_cmd(terminal)
 	hl.exec_cmd("quickshell & hyprpaper")
 end)
 
