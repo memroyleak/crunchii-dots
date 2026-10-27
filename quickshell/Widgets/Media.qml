@@ -1,10 +1,17 @@
 import ".."
-import "../Helpers"
 import "../Monitors"
+import "../Panels"
 import QtQuick
 
 Widget {
-    visible: MediaMonitor.playing
-    contents: MediaMonitor.track + " / " + MediaMonitor.artist
+    id: root
+    contents: MediaMonitor.playing ? MediaMonitor.track + " / " + MediaMonitor.artist : Media
     icon: "\udb80\udf87"
+
+    onClicked: panel.open = !panel.open
+
+    MediaPanel {
+        id: panel
+        target: root
+    }
 }

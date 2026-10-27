@@ -75,7 +75,7 @@ PopupWindow {
                 fillColor: Colors.bgColor
                 strokeColor: "transparent"
 
-                startX: 0; startY: 0;
+                startX: 0; startY: 0
                 PathLine { x: root.r; y: 0 }
                 PathLine { x: root.r; y: root.r }
                 PathArc {

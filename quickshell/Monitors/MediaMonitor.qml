@@ -11,6 +11,7 @@ Singleton {
     property string track: player?.trackTitle ?? ""
     property string album: player?.trackAlbum ?? ""
     property string artist: player?.trackArtist ?? ""
+    property string coverUrl: player?.trackArtUrl ?? ""
     property bool playing: player?.isPlaying ?? false
 
     readonly property list<MprisPlayer> list: Mpris.players.values
