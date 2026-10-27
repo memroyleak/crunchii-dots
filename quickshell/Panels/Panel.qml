@@ -53,6 +53,7 @@ PopupWindow {
 
         Rectangle {
             id: frame
+            x: root.r
             width: root.contentWidth
             height: root.contentHeight
             color: Colors.bgColor
@@ -64,7 +65,7 @@ PopupWindow {
         }
 
         Shape {
-            x: -root.r
+            x: 0
             y: 0
             width: root.r
             height: root.r
@@ -80,13 +81,13 @@ PopupWindow {
                 PathArc {
                     x: 0; y: 0
                     radiusX: root.r; radiusY: root.r
-                    direction: PathArc.CounterClockwise
+                    direction: PathArc.Counterclockwise
                 }
             }
         }
 
         Shape {
-            x: root.contentWidth
+            x: root.contentWidth + root.r
             y: 0
             width: root.r
             height: root.r
